@@ -27,10 +27,12 @@ public class UserDaoImp implements UserDao {
    }
 
    public User getByCar(String model, int series) {
-      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(
+      return (User) sessionFactory
+              .getCurrentSession()
+              .createQuery(
               "select x from User x join x.car y where y.model=:modelParam and y.series=:seriesParam")
-            .setParameter("modelParam", model)
-            .setParameter("seriesParam", series);
-      return query.getResultList().get(0);
+              .setParameter("modelParam", model)
+              .setParameter("seriesParam", series)
+              .uniqueResult();
    }
 }
