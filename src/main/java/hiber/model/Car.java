@@ -1,5 +1,4 @@
 package hiber.model;
-
 import javax.persistence.*;
 
 @Entity
@@ -17,12 +16,16 @@ public class Car {
     @Column(name = "series")
     private int series;
 
-    @OneToOne(mappedBy = "car")
-    private User user;
+    public Car() {}
 
-    public Long getCar_id() { return id; }
+    public Car(String model, int series) {
+        this.model = model;
+        this.series = series;
+    }
 
-    public void setCar_id(Long car_id) { this.id = id; }
+    public Long getId() { return id; }
+
+    public void setId(Long car_id) { this.id = id; }
 
     public String getModel() { return model; }
 
@@ -32,14 +35,4 @@ public class Car {
 
     public void setSeries(int series) { this.series = series; }
 
-    public User getUser() { return user; }
-
-    public void setUser(User user) { this.user = user; }
-
-    public Car() {}
-
-    public Car(String model, int series) {
-        this.model = model;
-        this.series = series;
-    }
 }
